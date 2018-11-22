@@ -3,19 +3,19 @@ double(int Xstart, int Xend, int Ystart, int Yend, int *X, int *Y, int *R, int *
 	double totalRisk = 0;
 	double length = sqrt(pow(Xstart - Xend,2) + pow(Ystart - Yend,2));
 		
-	int times = static_cast<int>(length);   //Âà§éÂI­Ó¼Æ 
+	int times = static_cast<int>(length);   //è½‰æŠ˜é»žå€‹æ•¸ 
 		
 	if(times == length)
 		times -= 1;
 	 
 	for(int t = 1; t <= times; t++)//dot num
 	{
-		double x = Xstart + (Xend-Xstart) / length * t;  //¤U¤@­Óªºx®y¼Ð 
-		double y = Ystart + (Yend-Ystart) / length * t;  //¤U¤@­Óªºy®y¼Ð 
+		double x = Xstart + (Xend-Xstart) / length * t;  //ä¸‹ä¸€å€‹çš„xåº§æ¨™ 
+		double y = Ystart + (Yend-Ystart) / length * t;  //ä¸‹ä¸€å€‹çš„yåº§æ¨™ 
 			
 		for(int b = 0; b < m; b++)//bomb num
 		{
-			double d = sqrt(pow((x - X[b]), 2) + pow((y - Y[b]), 2));   //¤À³ÎÂI©M¬µ¼uªº¶ZÂ÷ 
+			double d = sqrt(pow((x - X[b]), 2) + pow((y - Y[b]), 2));   //åˆ†å‰²é»žå’Œç‚¸å½ˆçš„è·é›¢ 
 				
 			if(R[b] - d > 0)
 			{
