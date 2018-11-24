@@ -1,41 +1,52 @@
-float lowcost=risk0;//lowcost¬O¤£Âàªº­·ÀI 
+float lowcost=risk0;//lowcostæ˜¯ä¸è½‰çš„é¢¨éšª 
 int *turnplace = new int [2*turntimes+5],ansturn=0;
-find(1,turntimes,inD,circleMinX, circleMaxX, circleMinY, circleMaxY, turnPlace,ansturn);
+float *distance = new float [151];
+for(int i=0;i<151;i++)
+	distance[i] = 0 ;
+find(1,turntimes,inD,circleMinX, circleMaxX, circleMinY, circleMaxY, turnPlace,ansturn,ansXY,distance);
 
 
-void find(int d,int k,int turntimes,int **inD,int circleMinX,int circleMaxX,
-				int circleMinY,,int circleMaxY,int* turnPlace,int &ansturn)
-{//Âàk¦¸ 	
-	int distance=0;
+void find(float d,int k,int turntimes,int **inD,int circleMinX,int circleMaxX,
+				int circleMinY,,int circleMaxY,int* turnPlace,int &ansturn,int *ansXY , float *distance)
+{//è½‰kæ¬¡ 	
 	if(k>turntimes)
 		return ;
 	for(int y = circleMinY; y <= circleMaxY; y++)
 	{
 		for(int x = circleMinX; x <= circleMaxX; x++)
-		{
-			
+		{	
+			bool check = repeat ( x , y , k , turnPlace);
+			if ( check == 0 )
+				continue;
 			if(inD[y][x] == 1 )
 			{
 				turnPlace[2*k] = x;
 				turnPlace[2*k+1] = y;
-				distance += sqrt(pow((turnPlace[2*k-2]-turnPlace[2*k]),2)+pow((turnPlace[2k-1]-turnPlace[2*k+1]),2));
-				if(distance>d)
+				float finalDis=0,tempDis=0;
+				tempDis = sqrt(pow((turnPlace[2*k]-turnPlace[2*k-2]),2)+pow((turnPlace[2*k+1]-turnPlace[2*k-1]),2));
+				finalDis= sqrt(pow((turnPlace[2*turntimes+2]-turnPlace[2*k]),2)+pow((turnPlace[2*turntimes+3]-turnPlace[2*k+1]),2));
+				if( finalDis+distance[k-1]+tempDis > d){ 
 					continue;
-				float cost= risk function(Âà§éÂI(x,y))+w(k-1);
+				}
+				distance[k] = distance[k-1] + tempDis;
+				float cost= risk function(è½‰æŠ˜é»(x,y))+w(k-1);
 				if(cost<lowcost){
 					ansturn=k;
 					lowcost=cost;
-					
+					for(int i=2;i<2*k+2;i++)
+						ansXY[i-2] = turnPlace[i];
 				}
-				find(d,k+1,turntimes,inD,circleMixX, circleMaxX, circleMixY circleMaxY, turnPlace, ansturn);
-						
+				find(d,k+1,turntimes,inD,circleMixX, circleMaxX, circleMixY, circleMaxY, turnPlace, ansturn, ansXY, distance);		
 			}
 		} 
 	}
-	 
-	
 }
 
-
-
+	bool repeat(int x,int y, int k, int *turnPlace){
+		bool check=1;
+		for(int i=0;i<=k;i++)
+			if (x == turnPlace[2*i] && y == turnPlace[2*i+1] )
+				check=0;
+		return check;
+	}
 
