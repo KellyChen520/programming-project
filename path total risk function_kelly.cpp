@@ -1,4 +1,4 @@
-double(int Xstart, int Xend, int Ystart, int Yend, int *X, int *Y, int *R, int *P)
+double totalLineRisk (int Xstart, int Xend, int Ystart, int Yend, int *X, int *Y, int *R, int *P)
 {
 	double totalRisk = 0;
 	double length = sqrt(pow(Xstart - Xend,2) + pow(Ystart - Yend,2));
