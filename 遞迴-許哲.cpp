@@ -18,7 +18,11 @@ void find(int d,int k,int turntimes,int **inD,int circleMinX,int circleMaxX,
 			{
 				turnPlace[2*k] = x;
 				turnPlace[2*k+1] = y;
-				float shortdis= sqrt(pow((turnPlace[2*turntimes+2]-turnPlace[2*k]),2)+pow((turnPlace[2*turntimes+3]-turnPlace[2*k+1]),2));
+				float shortdis;
+				if(k==1)
+					shortdis = sqrt(pow((turnPlace[0]-turnPlace[2]),2)+pow((turnPlace[1]-turnPlace[3]),2));
+				if(k>=2)
+					shortdis= sqrt(pow((turnPlace[2*turntimes+2]-turnPlace[2*k]),2)+pow((turnPlace[2*turntimes+3]-turnPlace[2*k+1]),2));
 				if(shortdis+distance>static_cast<float>(d)){ 
 					continue;
 				}
