@@ -3,8 +3,8 @@ float totalLineRisk (int *allPoints, int *X, int *Y, int *R, int *P, int m)
 	float eachPathRisk = 0;
 	float totalRisk = 0;
 	
-	float Xnew = 0;   //·sªº°_ÂIªºx®y¼Ğ 
-	float Ynew = 0;   //·sªº°_ÂIªºy®y¼Ğ
+	float Xnew = 0;   //æ–°çš„èµ·é»çš„xåº§æ¨™ 
+	float Ynew = 0;   //æ–°çš„èµ·é»çš„yåº§æ¨™
 	
 	float Xstart = 0;
 	float Ystart = 0;
@@ -15,14 +15,14 @@ float totalLineRisk (int *allPoints, int *X, int *Y, int *R, int *P, int m)
 	{
 		if(allPoints[i] != -1)
 		{
-	        float length = sqrt(pow(allPoints[i] - allPoints[i+2],2) + pow(allPoints[i+1] - allPoints[i+3],2));
+	        	float length = sqrt(pow(allPoints[i] - allPoints[i+2],2) + pow(allPoints[i+1] - allPoints[i+3],2));
 	        
-	        int times = static_cast<int>(length);   //Âà§éÂI­Ó¼Æ 
+	        	int times = static_cast<int>(length);   //è½‰æŠ˜é»å€‹æ•¸ 
 	        
-	        if(i == 0 )
-	        {
-	        	Xnew = allPoints[i];
-	        	Ynew = allPoints[i+1];
+	        	if(i == 0 )
+	       		{
+	        		Xnew = allPoints[i];
+	        		Ynew = allPoints[i+1];
 			}
 			else
 			{
@@ -32,23 +32,23 @@ float totalLineRisk (int *allPoints, int *X, int *Y, int *R, int *P, int m)
 				Yend = allPoints[i+3];
 				
 				float lengthInt = static_cast<float>(times);   
-	            float restLenghth = 1 - (length - lengthInt);   //¤U¤@­Ó°_ÂIÂ÷Âà§éÂIªº¶ZÂ÷ 
+	            		float restLenghth = 1 - (length - lengthInt);   //ä¸‹ä¸€å€‹èµ·é»é›¢è½‰æŠ˜é»çš„è·é›¢ 
 	            
-	            Xnew = newStart(restLenghth, Xstart,  Xend);   //·sªº°_ÂIªºx®y¼Ğ 
-	            Ynew = newStart(restLenghth, Ystart,  Yend);   //·sªº°_ÂIªºy®y¼Ğ
+	            		Xnew = newStart(restLenghth, Xstart,  Xend);   //æ–°çš„èµ·é»çš„xåº§æ¨™ 
+	           		 Ynew = newStart(restLenghth, Ystart,  Yend);   //æ–°çš„èµ·é»çš„yåº§æ¨™
 			}
 	        
-	        if(times == length)
-		    times -= 1;
+	        	if(times == length)
+		    	times -= 1;
 	 
-	        for(int t = 1; t <= times; t++)//dot num
-	        {
-				float x = Xnew + (Xend-Xnew) / length * t;  //¤U¤@­Óªºx®y¼Ğ 
-				float y = Ynew + (Yend-Ynew) / length * t;  //¤U¤@­Óªºy®y¼Ğ 
+	        	for(int t = 1; t <= times; t++)//dot num
+	        	{
+				float x = Xnew + (Xend-Xnew) / length * t;  //ä¸‹ä¸€å€‹çš„xåº§æ¨™ 
+				float y = Ynew + (Yend-Ynew) / length * t;  //ä¸‹ä¸€å€‹çš„yåº§æ¨™ 
 					
 				for(int b = 0; b < m; b++)//bomb num
 				{
-					float d = sqrt(pow((x - X[b]), 2) + pow((y - Y[b]), 2));   //¤À³ÎÂI©M¬µ¼uªº¶ZÂ÷ 
+					float d = sqrt(pow((x - X[b]), 2) + pow((y - Y[b]), 2));   //åˆ†å‰²é»å’Œç‚¸å½ˆçš„è·é›¢ 
 						
 					if(R[b] - d > 0)
 					{
@@ -56,7 +56,7 @@ float totalLineRisk (int *allPoints, int *X, int *Y, int *R, int *P, int m)
 					}
 							
 				}
-	        }
+	        	}
 		}
 		
 		totalRisk += eachPathRisk;
