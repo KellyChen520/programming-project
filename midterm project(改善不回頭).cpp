@@ -1,26 +1,26 @@
 /*
-°²³]¤@­ÓÂà§éÂI
-¶]¯x§Î¸Ìªº¨C­ÓÂI 
-ÀËÅçªø«×¬O§_¶W¹L ¶¶«K¦s¤Ubool­È 
-§_«hºâ­·ÀI
+å‡è¨­ä¸€å€‹è½‰æŠ˜é»
+è·‘çŸ©å½¢è£¡çš„æ¯å€‹é» 
+æª¢é©—é•·åº¦æ˜¯å¦è¶…é é †ä¾¿å­˜ä¸‹boolå€¼ 
+å¦å‰‡ç®—é¢¨éšª
 
 for
-°²³]¨â­ÓÂà§éÂI
-¶]bool = 1ªºÂI
+å‡è¨­å…©å€‹è½‰æŠ˜é»
+è·‘bool = 1çš„é»
 ...
-°²³]¤T 
+å‡è¨­ä¸‰ 
 
-¤@ª½ºâ¨ì (Risk0/w)+1­ÓÂà§éÂI
+ä¸€ç›´ç®—åˆ° (Risk0/w)+1å€‹è½‰æŠ˜é»
 
-¤ñ¸ûÁ`¦¨¥» = risk+ w(k - 1)
+æ¯”è¼ƒç¸½æˆæœ¬ = risk+ w(k - 1)
 if R-d > 0,risk = (R-distance)/R; else Risk=0
 distance = sqrt()
 
 
-§ïµ½:
-1.¤£¦^ÀY 
-2.¥¿¤è§Î ->if better,µÙ§Î 
-3.¬DÂI¨« ¤£­n¨C­Ó¨« 
+æ”¹å–„:
+1.ä¸å›é ­ 
+2.æ­£æ–¹å½¢ ->if better,è±å½¢ 
+3.æŒ‘é»èµ° ä¸è¦æ¯å€‹èµ° 
 */
 #include <iostream>
 #include <cmath>
@@ -37,15 +37,15 @@ bool turnback(int x, int y, int k, int* turnPlace, int turnTimes);
 int main()
 {
 	//cin
-	int n = 0, m = 0; //®æ¤lÂI0~n m­Ó«Â¯ÙÂI
-	float w = 0, d = 0; //d¶ZÂ÷­­¨î 
+	int n = 0, m = 0; //æ ¼å­é»0~n må€‹å¨è„…é»
+	float w = 0, d = 0; //dè·é›¢é™åˆ¶ 
 	cin >> n >> m >> w >> d;
 	
-	int *X = new int[m]; //«Â¯ÙÂI®y¼ĞX 
+	int *X = new int[m]; //å¨è„…é»åº§æ¨™X 
 	for(int i = 0; i < m; i++)
 		cin >> X[i];
 	
-	int *Y = new int[m]; //«Â¯ÙÂI®y¼ĞY 
+	int *Y = new int[m]; //å¨è„…é»åº§æ¨™Y 
 	for(int i = 0; i < m; i++)
 		cin >> Y[i];
 	
@@ -53,28 +53,28 @@ int main()
 	for(int i = 0; i < m; i++)
 		cin >> R[i];
 	
-	int *P = new int[m]; //­·ÀI­¼¼Æ 
+	int *P = new int[m]; //é¢¨éšªä¹˜æ•¸ 
 	for(int i = 0; i < m; i++)
 		cin >> P[i];
 	
 	int Xs = 0, Ys = 0, Xt = 0, Yt = 0; //start(Xs, Ys) terminal(Xt, Yt) 
 	cin >> Xs >> Ys >> Xt >> Yt;
 	
-	//ºâ0Âà§éÂIrisk
+	//ç®—0è½‰æŠ˜é»risk
 	float risk0 = straightLineRisk(Xs, Xt, Ys, Yt, X, Y, R, P, m);
 	
-	//ºâªø«×½d³ò
+	//ç®—é•·åº¦ç¯„åœ
 	float midX = (Xs + Xt) / 2;
 	float midY = (Ys + Yt) / 2;
 	
-	//inD§ä¥X¦bªø«×½d³ò¤ºªºÂI(¾ò¶ê§Î­±¿n¤º¾ã¼ÆÂI) 
-	int circleMaxX = midX + d/2; //¶ê§Î¤Á½umaxX®y¼Ğ 
-	int circleMinX = midX - d/2; //¶ê§Î¤Á½uminX®y¼Ğ
-	int circleMaxY = midY + d/2; //¶ê§Î¤Á½umaxY®y¼Ğ
-	int circleMinY = midY - d/2; //¶ê§Î¤Á½uminY®y¼Ğ
+	//inDæ‰¾å‡ºåœ¨é•·åº¦ç¯„åœå…§çš„é»(æ©¢åœ“å½¢é¢ç©å…§æ•´æ•¸é») 
+	int circleMaxX = midX + d/2; //åœ“å½¢åˆ‡ç·šmaxXåº§æ¨™ 
+	int circleMinX = midX - d/2; //åœ“å½¢åˆ‡ç·šminXåº§æ¨™
+	int circleMaxY = midY + d/2; //åœ“å½¢åˆ‡ç·šmaxYåº§æ¨™
+	int circleMinY = midY - d/2; //åœ“å½¢åˆ‡ç·šminYåº§æ¨™
 	
 	
-	//½T»{¨S¶W¥X¯x°}Ãä¬É 
+	//ç¢ºèªæ²’è¶…å‡ºçŸ©é™£é‚Šç•Œ 
 	if(circleMaxX > n)
 		circleMaxX = n;
 	if(circleMinX < 0)
@@ -84,7 +84,7 @@ int main()
 	if(circleMinY < 0)
 		circleMinY = 0;
 		
-	//«Å§i¬ö¿ı¸ÓÂI¬O§_¦bªø«×½d³ò¤ºªº¯x°}inD 
+	//å®£å‘Šç´€éŒ„è©²é»æ˜¯å¦åœ¨é•·åº¦ç¯„åœå…§çš„çŸ©é™£inD 
 	bool** inD = new bool* [circleMaxY + 1];
 	for(int i = 0; i <= circleMaxY; i++)
 	{
@@ -93,7 +93,7 @@ int main()
 			inD[i][j] = 0;
 	}
 	
-	//ÀËÅç¶ê§Î¤º¨C¤@ÂI¬O§_¦bªø«×½d³òd¤º 
+	//æª¢é©—åœ“å½¢å…§æ¯ä¸€é»æ˜¯å¦åœ¨é•·åº¦ç¯„åœdå…§ 
 	for(int y = circleMinY; y <= circleMaxY; y++)
 	{
 		for(int x = circleMinX; x <= circleMaxX; x++)
@@ -115,7 +115,7 @@ int main()
 	} 
 	*/
 	
-	int turnTimes = risk0;//Âà§éÂI¦¸¼Æ 
+	int turnTimes = risk0;//è½‰æŠ˜é»æ¬¡æ•¸ 
 	if(risk0 > 10)
 	{
 		if(w >= 1)
@@ -125,19 +125,19 @@ int main()
 	}
 	
 	
-	int* turnPlace = new int[2*turnTimes+5]; //¦s°_ÂIXY¡B¦UÂà§éÂIXY¡B²×ÂIXY 
+	int* turnPlace = new int[2*turnTimes+5]; //å­˜èµ·é»XYã€å„è½‰æŠ˜é»XYã€çµ‚é»XY 
 	turnPlace[0] = Xs, turnPlace[1] = Ys;
 	turnPlace[2*turnTimes+2] = Xt,turnPlace[2*turnTimes+3] = Yt;
-	for(int i = 2; i <= 2*turnTimes+1; i++) //²Äk­ÓÂà§éÂIªº X®y¼Ğ = turnPlace[2k],Y®y¼Ğ = turnPlace[2k+1] 
+	for(int i = 2; i <= 2*turnTimes+1; i++) //ç¬¬kå€‹è½‰æŠ˜é»çš„ Xåº§æ¨™ = turnPlace[2k],Yåº§æ¨™ = turnPlace[2k+1] 
 		turnPlace[i] = -1;
 	
 	float minCost = risk0;
 	int ansK = 0;
-	int* ansXY = new int[2*turnTimes+4]; //³Ì«á­n¿é¥Xªº®y¼Ğ 
+	int* ansXY = new int[2*turnTimes+4]; //æœ€å¾Œè¦è¼¸å‡ºçš„åº§æ¨™ 
 	for(int i = 0; i < 2*turnTimes+4; i++)
-		ansXY[i] = -1; //-1¤£¿é¥X 
+		ansXY[i] = -1; //-1ä¸è¼¸å‡º 
 		
-	float lowCost = risk0;//lowcost¬O¤£Âàªº­·ÀI 
+	float lowCost = risk0;//lowcostæ˜¯ä¸è½‰çš„é¢¨éšª 
 	float *distance = new float [turnTimes+1];
 	for(int i = 0; i < turnTimes+1; i++)
 		distance[i] = 0 ;
@@ -173,25 +173,25 @@ int main()
 	return 0;
 }
 
-//Function1:ª½½u 
+//Function1:ç›´ç·š 
 float straightLineRisk (int Xstart, int Xend, int Ystart, int Yend, int *X, int *Y, int *R, int *P, int m)
 {
 	float totalRisk = 0;
 	float length = sqrt(pow(Xstart - Xend,2) + pow(Ystart - Yend,2));
 		
-	int times = static_cast<int>(length);   //Âà§éÂI­Ó¼Æ 
+	int times = static_cast<int>(length);   //è½‰æŠ˜é»å€‹æ•¸ 
 		
 	if(times == length)
 		times -= 1;
 	 
 	for(int t = 1; t <= times; t++)//dot num
 	{
-		float x = Xstart + (Xend-Xstart) / length * t;  //¤U¤@­Óªºx®y¼Ğ 
-		float y = Ystart + (Yend-Ystart) / length * t;  //¤U¤@­Óªºy®y¼Ğ 
+		float x = Xstart + (Xend-Xstart) / length * t;  //ä¸‹ä¸€å€‹çš„xåº§æ¨™ 
+		float y = Ystart + (Yend-Ystart) / length * t;  //ä¸‹ä¸€å€‹çš„yåº§æ¨™ 
 			
 		for(int b = 0; b < m; b++)//bomb num
 		{
-			float d = sqrt(pow((x - X[b]), 2) + pow((y - Y[b]), 2));   //¤À³ÎÂI©M¬µ¼uªº¶ZÂ÷ 
+			float d = sqrt(pow((x - X[b]), 2) + pow((y - Y[b]), 2));   //åˆ†å‰²é»å’Œç‚¸å½ˆçš„è·é›¢ 
 				
 			if(R[b] - d > 0)
 			{
@@ -204,14 +204,14 @@ float straightLineRisk (int Xstart, int Xend, int Ystart, int Yend, int *X, int 
 	return totalRisk;
 }
 
-//Function2:ºârisk 
+//Function2:ç®—risk 
 float totalLineRisk (int *allPoints, int *X, int *Y, int *R, int *P, int m, int k, int turnTimes)
 {
 	float eachPathRisk = 0;
 	float totalRisk = 0;
 	
-	float Xnew = 0;   //·sªº°_ÂIªºx®y¼Ğ 
-	float Ynew = 0;   //·sªº°_ÂIªºy®y¼Ğ
+	float Xnew = 0;   //æ–°çš„èµ·é»çš„xåº§æ¨™ 
+	float Ynew = 0;   //æ–°çš„èµ·é»çš„yåº§æ¨™
 	
 	float Xstart = 0;
 	float Ystart = 0;
@@ -228,7 +228,7 @@ float totalLineRisk (int *allPoints, int *X, int *Y, int *R, int *P, int m, int 
 	    else
 	        length = sqrt(pow(allPoints[i] - allPoints[2*turnTimes +2],2) + pow(allPoints[i+1] - allPoints[2*turnTimes +3],2));
 	        
-	    int times = static_cast<int>(length);   //¤À³ÎÂI­Ó¼Æ 
+	    int times = static_cast<int>(length);   //åˆ†å‰²é»å€‹æ•¸ 
 	        
 		if(i == 0 )
 		{
@@ -254,21 +254,21 @@ float totalLineRisk (int *allPoints, int *X, int *Y, int *R, int *P, int m, int 
 				
 
 			float lengthInt = static_cast<float>(times);   
-			float restLenghth = 1 - (length - lengthInt);   //¤U¤@­Ó°_ÂIÂ÷Âà§éÂIªº¶ZÂ÷ 
+			float restLenghth = 1 - (length - lengthInt);   //ä¸‹ä¸€å€‹èµ·é»é›¢è½‰æŠ˜é»çš„è·é›¢ 
 
             float tempL = sqrt(pow(Xstart - Xend, 2) + pow(Ystart - Yend, 2));
-			Xnew = newStart(restLenghth, Xstart,  Xend, tempL);   //·sªº°_ÂIªºx®y¼Ğ 
-			Ynew = newStart(restLenghth, Ystart,  Yend, tempL);   //·sªº°_ÂIªºy®y¼Ğ
+			Xnew = newStart(restLenghth, Xstart,  Xend, tempL);   //æ–°çš„èµ·é»çš„xåº§æ¨™ 
+			Ynew = newStart(restLenghth, Ystart,  Yend, tempL);   //æ–°çš„èµ·é»çš„yåº§æ¨™
 		}
 
 		if(times == length)
 			times -= 1;
 
-		if(Xnew != allPoints[0] && Ynew != allPoints[1])//°_ÂI
+		if(Xnew != allPoints[0] && Ynew != allPoints[1])//èµ·é»
 		{
 			for(int b = 0; b < m; b++)//bomb num
 			{
-				float d = sqrt(pow((Xnew - X[b]), 2) + pow((Ynew - Y[b]), 2));   //¤À³ÎÂI©M¬µ¼uªº¶ZÂ÷ 
+				float d = sqrt(pow((Xnew - X[b]), 2) + pow((Ynew - Y[b]), 2));   //åˆ†å‰²é»å’Œç‚¸å½ˆçš„è·é›¢ 
 
 				if(R[b] - d > 0)
 				{
@@ -282,12 +282,12 @@ float totalLineRisk (int *allPoints, int *X, int *Y, int *R, int *P, int m, int 
 	 
 	    for(int t = 1; t <= times; t++)//dot num
 	    {
-			float x = Xnew + (Xend-Xnew) / length * t;  //¤U¤@­Óªºx®y¼Ğ 
-			float y = Ynew + (Yend-Ynew) / length * t;  //¤U¤@­Óªºy®y¼Ğ 
+			float x = Xnew + (Xend-Xnew) / length * t;  //ä¸‹ä¸€å€‹çš„xåº§æ¨™ 
+			float y = Ynew + (Yend-Ynew) / length * t;  //ä¸‹ä¸€å€‹çš„yåº§æ¨™ 
 					
 			for(int b = 0; b < m; b++)//bomb num
 			{
-				float d = sqrt(pow((x - X[b]), 2) + pow((y - Y[b]), 2));   //¤À³ÎÂI©M¬µ¼uªº¶ZÂ÷ 
+				float d = sqrt(pow((x - X[b]), 2) + pow((y - Y[b]), 2));   //åˆ†å‰²é»å’Œç‚¸å½ˆçš„è·é›¢ 
 						
 				if(R[b] - d > 0)
 				{
@@ -316,7 +316,7 @@ float newStart(int distance, float start, float end, float tempL)
 //Function4
 void findMinCost(float d,int m, int w, int k,int turnTimes,bool **inD, float lowCost, int circleMinX,int circleMaxX,int circleMinY,
 					int circleMaxY,int* turnPlace,int &ansK,int *ansXY , float *distance, int* X, int* Y, int* R, int* P)
-{//Âàk¦¸ 	
+{//è½‰kæ¬¡ 	
 	if(k > turnTimes)
 		return;
 	for(int y = circleMinY; y <= circleMaxY; y++)
@@ -345,7 +345,7 @@ void findMinCost(float d,int m, int w, int k,int turnTimes,bool **inD, float low
 					
 				distance[k] = distance[k-1] + tempDis;
 				
-				float cost = totalLineRisk(turnPlace, X, Y, R, P, m, k,turnTimes) ;//function(Âà§éÂI(x,y))+w(k-1);
+				float cost = totalLineRisk(turnPlace, X, Y, R, P, m, k,turnTimes) ;//function(è½‰æŠ˜é»(x,y))+w(k-1);
 				if(cost < lowCost)
 				{
 					ansK = k;
@@ -368,7 +368,7 @@ void findMinCost(float d,int m, int w, int k,int turnTimes,bool **inD, float low
 //Function5
 bool repeat(int x,int y, int k, int *turnPlace, int turnTimes)
 {
-	//²×ÂIXY turnPlace[2*turnTimes+2] = Xt,turnPlace[2*turnTimes+3] = Yt; 
+	//çµ‚é»XY turnPlace[2*turnTimes+2] = Xt,turnPlace[2*turnTimes+3] = Yt; 
 	bool check = 0;
 	for(int i = 0; i <= k; i++)
 	{
@@ -384,7 +384,7 @@ bool repeat(int x,int y, int k, int *turnPlace, int turnTimes)
 //Function6
 bool turnback(int x, int y, int k, int* turnPlace, int turnTimes)
 {
-	//²×ÂIXY turnPlace[2*turnTimes+2] = Xt,turnPlace[2*turnTimes+3] = Yt; 
+	//çµ‚é»XY turnPlace[2*turnTimes+2] = Xt,turnPlace[2*turnTimes+3] = Yt; 
 	//turnPlace[2*(k-1)](X,turnPlace[2*k-1] (Y
 	int maxX = turnPlace[2*turnTimes+2];
 	int minX = turnPlace[2*k-2];
